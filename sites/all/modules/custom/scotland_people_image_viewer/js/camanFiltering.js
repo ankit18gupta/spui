@@ -200,7 +200,7 @@ Drupal.behaviors.imageViewer = {
                 $buttonFilterSetting = $filter.find('.FilterSetting').attr('id');
 
             if ($buttonSet == $buttonFilterSetting) {
-                $filter.find('.FilterSetting').toggle();
+                $filter.find('.FilterSetting').slideToggle();
                 $filter.siblings('.Filter').find('.FilterSetting').hide();
                 //$filter.parent().siblings('.filter-button-row').find('.Filter .FilterSetting').hide();
             }
