@@ -1,0 +1,4 @@
+name = Scotland People Image Viewer
+description = A custom module for Image Viewer POC.
+core = 7.x
+package = Scotland People
