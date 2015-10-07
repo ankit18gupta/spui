@@ -92,7 +92,7 @@ function scotland_people_image_upload() {
         //save the file to the filesystem, alter this as necessary for your file system and Drupal's needs
 		$file = file_save_data($unecoded, 'public://' . $user->uid . '/image_' . time() . '.png', FILE_EXISTS_RENAME);
 
-		$file_info = array(
+		/*$file_info = array(
 			'fid' => $file->fid,
 			'filename' => $file->filename,
 			'filemime' => $file->filemime,
@@ -109,7 +109,7 @@ function scotland_people_image_upload() {
        
 		$user_wrapper->field_user_images[$imagesCount]->set($file_info);
 		$user_wrapper->save();
-		
+		*/
 	}
 }
 

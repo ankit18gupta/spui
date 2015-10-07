@@ -1,0 +1,124 @@
+#Filters h2 {
+    margin: 0;
+}
+
+#holder {
+    padding: 20px;
+    background: #535B5D;
+}
+
+canvas {
+    margin: 0 auto;
+}
+
+.img-filter-icon {
+    background: url("../images/sliders.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 26px;
+    width: 35px;
+}
+
+.FilterSetting {
+    display: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.FilterSetting input {
+    margin-bottom: 5px;
+}
+
+.FilterName {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.filter-button-row {
+    border: 1px solid #C1C1C1;
+    margin: 15px 0 !important;
+    padding: 15px 0 10px;
+}
+
+.filter-icon {
+    display: inline-block;
+    height: 41px;
+    width: 41px;
+    border-radius: 100%;
+}
+
+.FilterName a p,
+.img-btn a p {
+    font-weight: bold;
+}
+
+.FilterName a:hover,
+.FilterName a:focus {
+    background: #C1C1C1;
+    transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+}
+
+.brightness-icon {
+    background: url("../images/img_tools.png") -52px -34px;
+}
+
+.contrast-icon {
+    background: url("../images/img_tools.png") -186px -34px;
+}
+
+.saturation-icon {
+    background: url("../images/img_tools.png") -320px -34px;
+}
+
+.vibrance-icon {
+    background: url("../images/img_tools.png") -52px -134px;
+}
+
+.exposure-icon {
+    background: url("../images/img_tools.png") -319px -234px;
+}
+
+.sharpen-icon {
+    background: url("../images/img_tools.png") -186px -237px;
+}
+
+.crop-icon {
+    background: url("../images/img_tools.png") 0 -307px;
+}
+
+.save-icon {
+    background: url("../images/img_tools.png") 0 -347px;
+}
+
+.back-icon {
+    background: url("../images/img_tools.png") 0 -382px;
+}
+
+.img-btn {
+    margin-top: 15px;
+}
+
+.img-btn a {
+    margin-right: 15px;
+}
+
+.img-btn a:hover,
+.img-btn a:focus {
+    background: #535B5D;
+    color: #fff;
+    transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+}
+
+.canvas-container {
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+#scotland-people-website-image-editor a {
+    margin-right: 15px;
+}
