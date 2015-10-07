@@ -1,0 +1,278 @@
+<?php
+
+/**
+ * @file
+ * Provides features for modifying images
+ */
+
+define ('MODULE_PATH', drupal_get_path('module', 'scotland_people_image_viewer'));
+define ('FILES_PATH',  base_path().'sites/default/files/');
+
+/**
+ * Implemenataion of hook_menu function.
+ */
+function scotland_people_image_viewer_menu()
+{
+  $items = array();
+  $items['image-viewer'] = array(
+    'title' => 'Image Viewer',
+    'description' => 'Image Viewer',
+    'page callback' => 'scotland_people_image_viewer_page',
+    'access callback' => 'user_is_logged_in',
+    'type' => MENU_CALLBACK,
+  );
+
+  $items['image_upload'] = array(
+    'title' => 'Image Upload',
+    'page callback' => 'scotland_people_image_upload',
+    'access callback' => 'user_is_logged_in',
+    'type' => MENU_CALLBACK,
+  );
+  
+  $items['image-editor'] = array(
+    'title' => t('Select Image'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('scotland_people_website_image_editor'),
+    'access callback' => 'user_is_logged_in',
+  );
+
+  return $items;
+}
+
+
+function scotland_people_website_image_editor($form, &$form_state) {
+
+  drupal_add_js(MODULE_PATH.'/js/imce.js');
+
+  $form['selected_image'] = array(
+    '#title' => t('Selected Image'),  
+    '#type' => 'textfield',   
+    '#attributes' => array('readonly' => 'readonly'), 
+  );
+
+  $form['select_image'] = array(
+    '#markup' => "<a href='#' onclick='openFileBrowser()' class='btn btn-primary'>".t("Choose Image")."</a>",
+  );
+
+  $form['submit'] = array(
+      '#type' => 'submit',
+      '#value' => t('Submit'),
+  );
+
+  return $form;
+
+}
+
+function scotland_people_website_image_editor_submit($form, &$form_state) {
+  $form_state['redirect'] = array(
+    'image-viewer',
+    array(
+      'query' => array(
+        'source' => $form_state['values']['selected_image']
+      ),
+    ),
+  );
+}
+
+function scotland_people_image_upload() {
+   //Todo: Get base64 image data, decode and save to user profile field
+	global $user;
+	$uid = $user->uid;
+    //grab our raw image data passed javascript
+	$raw_data = $_POST['imagedata'];
+
+	$filtered_data = explode(',', $raw_data);
+    //this data is posted as "data:image/png;base64,", so we explode on comma
+
+	if (isset($filtered_data[1])) {
+    //make sure there is data
+    //get the raw data
+		$unecoded = base64_decode($filtered_data[1]);
+
+        //save the file to the filesystem, alter this as necessary for your file system and Drupal's needs
+		$file = file_save_data($unecoded, 'public://' . $user->uid . '/image_' . time() . '.png', FILE_EXISTS_RENAME);
+
+		$file_info = array(
+			'fid' => $file->fid,
+			'filename' => $file->filename,
+			'filemime' => $file->filemime,
+			'uid' => $uid,
+			'uri' => $file->uri,
+			'status' => 1,
+			'display' => 1,
+		);
+
+		$account = user_load($uid);
+        
+		$imagesCount = count($account->field_user_images['und']);
+		$user_wrapper = entity_metadata_wrapper('user', $uid);
+       
+		$user_wrapper->field_user_images[$imagesCount]->set($file_info);
+		$user_wrapper->save();
+		
+	}
+}
+
+function scotland_people_image_viewer_page() {
+  drupal_add_library('system', 'ui.tooltip');
+  drupal_add_css(MODULE_PATH.'/css/style.css');
+  drupal_add_css(MODULE_PATH.'/css/cropper.css');
+  drupal_add_css(MODULE_PATH.'/css/darkroom.css');
+  drupal_add_js(MODULE_PATH.'/js/underscore-min.js');
+  drupal_add_js(MODULE_PATH.'/js/caman.full.min.js');
+  drupal_add_js(MODULE_PATH.'/js/camanFiltering.js');
+  drupal_add_js(MODULE_PATH.'/js/fabric.js', array('scope' => 'footer'));
+  drupal_add_js(MODULE_PATH.'/js/darkroom.js', array('scope' => 'footer'));
+
+  $originalImage = $_GET['source'];
+  $vars = array(
+    'path' => MODULE_PATH,
+    'image_path' => $originalImage
+  );
+
+  return theme('image_viewer', $vars);
+}
+
+function scotland_people_image_viewer_theme($existing, $type, $theme, $path) {
+
+  return array(
+    'image_viewer' => array(
+      'template' => 'image-viewer',
+      'path' => $path . '/templates',
+      'variables' => array(
+        'data' => NULL,
+        'path' => NULL
+      ),
+    ),
+  );
+}
+
+
+
+function scotland_people_image_resize($src, $dst, $width, $height, $crop=0, $x, $y, $rotation) {
+
+	if(!list($w, $h) = getimagesize($src)) return "Unsupported picture type!";
+
+	$targ_w = $targ_h = 250;
+	$jpeg_quality = 90;
+
+	$type = strtolower(substr(strrchr($src,"."),1));
+	if($type == 'jpeg') $type = 'jpg';
+	switch($type){
+		case 'bmp': $img = imagecreatefromwbmp($src); break;
+		case 'gif': $img = imagecreatefromgif($src); break;
+		case 'jpg': $img = imagecreatefromjpeg($src); break;
+		case 'png': $img = imagecreatefrompng($src); break;
+		default : return "Unsupported picture type!";
+	}
+
+	// Rotate
+	$rotate = imagerotate($img, $rotation, 0);
+
+	// resize
+	if($crop){
+		if($w < $width or $h < $height) return "Picture is too small!";
+		$ratio = max($width/$w, $height/$h);
+		$h = $height / $ratio;
+		//$x = ($w - $width / $ratio) / 2;
+		$w = $width / $ratio;
+	}
+	else{
+		if($w < $width and $h < $height) return "Picture is too small!";
+		$ratio = min($width/$w, $height/$h);
+		$width = $w * $ratio;
+		$height = $h * $ratio;
+		//$x = 0;
+	}
+
+	$new = imagecreatetruecolor($width, $height);
+
+	// preserve transparency
+	if($type == "gif" or $type == "png"){
+		imagecolortransparent($new, imagecolorallocatealpha($new, 0, 0, 0, 127));
+		imagealphablending($new, false);
+		imagesavealpha($new, true);
+	}
+
+	/**
+	 * @param $new new image object
+	 * @param $img original image source
+	 * @param 0 default
+	 * @param 0 default
+	 * @param x axis
+	 * @param y axis
+	 * @param $targ_w final new image thumb width
+	 * @param $targ_h final new image thumb height
+	 * @param $width user selected width on crop area
+	 * @param $height user selected height on crop area
+	 */
+
+	imagecopyresampled($new, $rotate, 0, 0, $x, $y, $width, $height, $width, $height);
+
+	switch($type) {
+		case 'bmp': imagewbmp($new, $dst); break;
+		case 'gif': imagegif($new, $dst); break;
+		case 'jpg': imagejpeg($new, $dst);  break;
+		case 'png': imagepng($new, $dst); break;
+	}
+
+	return true;
+}
+
+function getGDBrightness($brightness) {
+	///Below are the CSS values for brightness
+	//0 = min brightness, 100 = no change, 200 = max brightness
+	//Below are brightness values in GD
+	//-255 = min brightness, 0 = no change, +255 = max brightness
+
+	$unit = 1; //i.e (255/100) actually it should be 2.55 but in php +255 means image is not showing at all
+	if ($brightness == 100) {
+		$brightness = 0;
+	} else if($brightness > 100) {
+		$brightness =  ($brightness - 100) * $unit;
+	} else { //less than
+		$brightness = (100 - $brightness) * (-1 * abs($unit));
+	}
+
+	return $brightness;
+}
+
+function getGDContrast($contrast) {
+	//Below are the CSS values for contrast
+	//0 = min contrast, 100 = no contrast, 200 = max contrast
+
+    //Here contrast is working in reverse order from css
+	//-100 = max contrast, 0 = no change, +100 = min contrast
+	if ($contrast == 100) {
+		$contrast = 0;
+	} else if($contrast > 100) {
+		//Convert to negative
+		$contrast = 100 - $contrast;
+
+	} else { //less than
+		//convert to positive
+		$contrast = 100 - $contrast;
+	}
+
+	return $contrast;
+}
+
+function applyImageFilters($src, $dst, $brighness, $contrast) {
+
+	list($w, $h) = getimagesize($src);
+
+	$main = imagecreatefromjpeg($src);
+	$output = imagecreatetruecolor($w, $h);
+	imagefilter($main, IMG_FILTER_BRIGHTNESS, $brighness);
+	imagefilter($main, IMG_FILTER_CONTRAST, $contrast);
+
+	//Merge the differences onto the output image
+	imagecopy($output, $main, 0, 0, 0, 0, $w, $h);
+
+	imagedestroy($main);
+
+	// Output the differences
+	//header('Content-Type: image/png');
+	imagejpeg($output, $dst);
+	imagedestroy($output);
+}
