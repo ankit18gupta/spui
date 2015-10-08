@@ -2,14 +2,17 @@
 <div class="container">
     <div class="row">
         <div id="Filters" class="show col-sm-12">
-			<div class="row">
-				<div class = "col-sm-2">
+			<div class="row filter-settings-row">
+				<div class = "col-sm-2 col-xs-10">
 					<h2><span class = "img-filter-icon"></span> Filters</h2>
 				</div>
+                <div class="col-xs-2">
+                    <span class="glyphicon glyphicon-option-vertical filter-settings-icon" aria-hidden="true"></span>
+                </div>
 			</div>
             <div class="row filter-button-row">
 				
-                <div class="Filter col-sm-2 col-xs-6">
+                <div class="Filter col-sm-2 col-xs-12">
                     <div class="FilterName">
                         <a title = "Brightness" class="btn btn-default" role="button" href="#" data-set="brightness"><span class = "filter-icon brightness-icon"></span><p>Brightness</p></a>
                     </div>
@@ -26,7 +29,7 @@
                     </div>
                 </div>
 
-                <div class="Filter col-sm-2 col-xs-6">
+                <div class="Filter col-sm-2 col-xs-12">
                     <div class="FilterName">
                         <a title = "Contrast" class="btn btn-default" role="button" href="#" data-set="contrast"><span class = "filter-icon contrast-icon"></span><p>Contrast</p></a>
                     </div> 
@@ -43,7 +46,7 @@
                     </div>
                 </div>
 
-                <div class="Filter col-sm-2 col-xs-6">
+                <div class="Filter col-sm-2 col-xs-12">
                     <div class="FilterName">
                         <a title = "Saturation" class="btn btn-default" role="button" href="#" data-set="saturation"><span class = "filter-icon saturation-icon"></span><p>Saturation</p></a>
                     </div>
@@ -59,7 +62,7 @@
                         <span class="FilterValue">0</span>
                     </div>
                 </div>
-                <div class="Filter col-sm-2 col-xs-6">
+                <div class="Filter col-sm-2 col-xs-12">
                     <div class="FilterName">
                         <a title = "Vibrance" class="btn btn-default" role="button" href="#" data-set="vibrance"><span class = "filter-icon vibrance-icon"></span><p>Vibrance</p></a>
                     </div>
@@ -76,7 +79,7 @@
                     </div>
                 </div>
 
-                <div class="Filter col-sm-2 col-xs-6">
+                <div class="Filter col-sm-2 col-xs-12">
                     <div class="FilterName">
 						<a title = "Exposure" class="btn btn-default" role="button" href="#" data-set="exposure"><span class = "filter-icon exposure-icon"></span><p>Exposure</p></a>
                     </div>
@@ -92,7 +95,7 @@
                         <span class="FilterValue">0</span>
                     </div>
                 </div>
-                <div class="Filter col-sm-2 col-xs-6">
+                <div class="Filter col-sm-2 col-xs-12">
                     <div class="FilterName">
                         <a title = "Sharpen" class="btn btn-default" role="button" href="#" data-set="sharpen"><span class = "filter-icon sharpen-icon"></span><p>Sharpen</p></a>
                     </div>
