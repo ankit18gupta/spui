@@ -1,3 +1,6 @@
+#Filters {
+	position: relative;
+}
 #Filters h2 {
     margin: 0;
 }
@@ -20,7 +23,7 @@ canvas {
 }
 
 .FilterSetting {
-    display: none;
+    //display: none;
     text-align: center;
     font-weight: bold;
     font-size: 16px;
@@ -52,13 +55,17 @@ canvas {
 .img-btn a p {
     font-weight: bold;
 }
+.FilterName a {
+	color: #000;
+}
 
 .FilterName a:hover,
 .FilterName a:focus {
     background: #C1C1C1;
-    transition: all 0.5s ease-in-out;
-    -moz-transition: all 0.5s ease-in-out;
-    -webkit-transition: all 0.5s ease-in-out;
+	box-shadow: 0 0 7px #fff;
+    transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
 }
 
 .brightness-icon {
@@ -103,15 +110,16 @@ canvas {
 
 .img-btn a {
     margin-right: 15px;
+	color: #000;
 }
 
 .img-btn a:hover,
 .img-btn a:focus {
     background: #535B5D;
     color: #fff;
-    transition: all 0.5s ease-in-out;
-    -moz-transition: all 0.5s ease-in-out;
-    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
 }
 
 .canvas-container {
@@ -126,30 +134,115 @@ canvas {
 
 /*Mobile View Stylings*/
 
-.filter-settings-row {
-    margin-right: 0 !important;
-}
-
-.filter-settings-icon {
-    border: 1px solid #ccc;
-    font-size: 20px;
-    padding: 6px 5px;
-}
-
 @media screen and (max-width: 767px) {
-    .FilterName {
-        float: left;
+	.filter-settings-row {
+		margin-right: 0 !important;
+		margin-bottom: 10px;
+	}
+	.FilterSetting {
+		display: none;
+	}
+	.settings-icon-xs {
+		padding-right: 0 !important;
+	}
+	.input-row {
+		left: 60px;
+		position: absolute;
+		top: 95px;
+		width: 70%;
+		z-index: 11;
+	}
+	.filter-button-row {
+		border: medium none;
+		left: 5px;
+		margin: 0 !important;
+		padding: 5px 0 0;
+		position: absolute;
+		width: 100%;
+		z-index: 10;
+	}
+	.Filter {
+		float: left;
+		width: 15%;
+	}
+	/* .FilterName {
+        float: right;
         width: 40%;
-    }
+    } */
     .FilterName a {
         border: none;
+		padding: 4px 3px 0 1px;
     }
     .FilterName p {
         display: none;
     }
-    .FilterSetting {
-        float: right;
+    /* .FilterSetting {
+        float: left;
         width: 60%;
         padding: 12px 0;
-    }
+    } */
+	.filter-settings-row a {
+		color: #000;
+		border-radius: 0;
+		box-shadow: 0 0 2px #c1c1c1;
+		padding: 7px;
+	}
+	
+	.filter-settings-row a:hover,
+	.filter-settings-row a:focus {
+		background: #C1C1C1;
+		transition: all 0.5s ease-in-out;
+		-moz-transition: all 0.5s ease-in-out;
+		-webkit-transition: all 0.5s ease-in-out;	
+	}
+	.filter-icon {
+		display: inline-block;
+		height: 29px;
+		width: 29px;
+		border-radius: 100%;
+	}
+	.FilterValue {
+		display: none;
+	}
+	.brightness-icon {
+		background: url("../images/filters_sm.png") no-repeat 0 0;
+	}
+	.contrast-icon {
+		background: url("../images/filters_sm.png") no-repeat 0 -38px;
+		width: 30px;
+		height: 28px;
+	}
+	.saturation-icon {
+		background: url("../images/filters_sm.png") no-repeat 0 -76px;
+	}
+	.vibrance-icon {
+		background: url("../images/filters_sm.png") no-repeat 0 -115px;
+	}
+	.exposure-icon {
+		background: url("../images/filters_sm.png") no-repeat 0 -154px;
+		
+	}
+	.sharpen-icon {
+		background: url("../images/filters_sm.png") no-repeat 0 -196px;
+	}
+	#holder {
+		padding: 92px 5px 8px;
+	}
+	.setting-label {
+		margin: 0;
+		color: #fff;
+		padding-bottom: 2px;
+		display: none;
+	}
+	.img-btn .filter-icon {
+		height: 40px;
+		width: 40px;
+	}
+	/* .img-btn a{
+		height: 40px;
+		width: 40px;
+	} */
+	.img-btn p {
+		display: none;
+	}
 }

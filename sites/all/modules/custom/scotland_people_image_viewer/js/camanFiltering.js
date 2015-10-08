@@ -190,20 +190,30 @@ Drupal.behaviors.imageViewer = {
             });
 
         }).call(this);
-		$("#edit, #saveIt").on("click", function() { 
+		$("#edit, #saveIt").on("click", function(e1) {
+			e1.preventDefault();
 			$(".FilterSetting").hide();
 		});
-        $(".FilterName a").on("click", function(e) {
-			e.preventDefault();
-            var $buttonSet = $(this).attr('data-set'),
-                $filter = $(this).parent().closest('.Filter'),
-                $buttonFilterSetting = $filter.find('.FilterSetting').attr('id');
+        $(".FilterName a").on("click", function(e2) {
+			e2.preventDefault();
+            var $buttonSet = $(this).attr('data-set');
+			$(".input-row .FilterSetting .setting-label").show();
+			$('.input-row .FilterSetting').each(function(i, obj) {
+				if($(this).attr('id') == $buttonSet) {
+					$(this).toggle();
+					$(this).siblings().hide();
+				}
+			});
+			
+			
+			
+			
 
-            if ($buttonSet == $buttonFilterSetting) {
-                $filter.find('.FilterSetting').slideToggle();
-                $filter.siblings('.Filter').find('.FilterSetting').hide();
+            /* if ($buttonSet == $buttonFilterSetting) {
+                //$filter.find('.FilterSetting').show();
+                //$filter.siblings('.Filter').find('.FilterSetting').hide();
                 //$filter.parent().siblings('.filter-button-row').find('.Filter .FilterSetting').hide();
-            }
+            } */
         });
 
 
