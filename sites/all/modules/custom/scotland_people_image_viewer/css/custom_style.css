@@ -122,3 +122,34 @@ canvas {
 #scotland-people-website-image-editor a {
     margin-right: 15px;
 }
+
+
+/*Mobile View Stylings*/
+
+.filter-settings-row {
+    margin-right: 0 !important;
+}
+
+.filter-settings-icon {
+    border: 1px solid #ccc;
+    font-size: 20px;
+    padding: 6px 5px;
+}
+
+@media screen and (max-width: 767px) {
+    .FilterName {
+        float: left;
+        width: 40%;
+    }
+    .FilterName a {
+        border: none;
+    }
+    .FilterName p {
+        display: none;
+    }
+    .FilterSetting {
+        float: right;
+        width: 60%;
+        padding: 12px 0;
+    }
+}
