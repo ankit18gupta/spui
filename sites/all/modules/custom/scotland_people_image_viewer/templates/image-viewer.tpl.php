@@ -51,7 +51,7 @@
                 </div>
             </div>
 			<div class="row input-row">
-				<div class="FilterSetting" id="brightness">
+				<div class="FilterSetting col-xs-12" id="brightness">
 					<h5 class = "text-center setting-label">Brightness</h5>
 					<input
 						type="range"
@@ -63,7 +63,7 @@
 						>
 					<span class="FilterValue">0</span>
 				</div>
-				<div class="FilterSetting" id="contrast">
+				<div class="FilterSetting col-xs-12" id="contrast">
 					<h5 class = "text-center setting-label">Contrast</h5>
 					<input
 						type="range"
@@ -75,7 +75,7 @@
 						>
 					<span class="FilterValue">0</span>
                 </div>
-				<div class="FilterSetting" id="saturation">
+				<div class="FilterSetting col-xs-12" id="saturation">
 					<h5 class = "text-center setting-label">Saturation</h5>
 					<input
 						type="range"
@@ -87,7 +87,7 @@
 						>
 					<span class="FilterValue">0</span>
                 </div>
-				<div class="FilterSetting" id="vibrance">
+				<div class="FilterSetting col-xs-12" id="vibrance">
 					<h5 class = "text-center setting-label">Vibrance</h5>
 					<input
 						type="range"
@@ -97,9 +97,9 @@
 						value="0"
 						data-filter="vibrance"
 						>
-					<span class="FilterValue">0</span>
+					<span class="FilterValue ">0</span>
                 </div>
-				<div class="FilterSetting" id="exposure">
+				<div class="FilterSetting col-xs-12" id="exposure">
 					<h5 class = "text-center setting-label">Exposure</h5>
 					<input
 						type="range"
@@ -111,7 +111,7 @@
 						>
 					<span class="FilterValue">0</span>
                 </div>
-				<div class="FilterSetting" id="sharpen">
+				<div class="FilterSetting col-xs-12" id="sharpen">
 					<h5 class = "text-center setting-label">Sharpen</h5>
 					<input
 						type="range"

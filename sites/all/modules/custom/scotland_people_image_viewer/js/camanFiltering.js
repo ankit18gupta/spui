@@ -194,13 +194,22 @@ Drupal.behaviors.imageViewer = {
 			e1.preventDefault();
 			$(".FilterSetting").hide();
 		});
-        $(".FilterName a").on("click", function(e2) {
+		$(".settings-icon-xs a").on("click", function(e2) {
 			e2.preventDefault();
+			$("#holder").toggleClass("pad-img");
+			$(".filter-button-row").slideToggle(100);
+			if($(".filter-button-row").is(":visible"))
+				$(".input-row .FilterSetting").hide();
+		});
+        $(".FilterName a").on("click", function(e3) {
+			e3.preventDefault();
+			$(this).parent().parent().siblings().find("a").removeClass("active");
+			$(this).toggleClass("active");
+			$(this).toggleClass("rotate");
             var $buttonSet = $(this).attr('data-set');
-			$(".input-row .FilterSetting .setting-label").show();
 			$('.input-row .FilterSetting').each(function(i, obj) {
 				if($(this).attr('id') == $buttonSet) {
-					$(this).toggle();
+					$(this).slideToggle(100);
 					$(this).siblings().hide();
 				}
 			});
