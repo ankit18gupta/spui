@@ -3,115 +3,127 @@
     <div class="row">
         <div id="Filters" class="show col-sm-12">
 			<div class="row filter-settings-row">
-				<div class = "col-sm-2 col-xs-10">
+				<div class = "col-sm-4 col-xs-10">
 					<h2><span class = "img-filter-icon"></span> Filters</h2>
 				</div>
-                <div class="col-xs-2">
-                    <span class="glyphicon glyphicon-option-vertical filter-settings-icon" aria-hidden="true"></span>
+                <div class="col-xs-2 visible-xs text-right settings-icon-xs">
+                    <a href="#" role = "button" class = "btn btn-default"><span class="glyphicon glyphicon-option-vertical filter-settings-icon" aria-hidden="true"></span></a>
                 </div>
 			</div>
             <div class="row filter-button-row">
-				
-                <div class="Filter col-sm-2 col-xs-12">
+                <div class="Filter col-sm-2">
                     <div class="FilterName">
                         <a title = "Brightness" class="btn btn-default" role="button" href="#" data-set="brightness"><span class = "filter-icon brightness-icon"></span><p>Brightness</p></a>
                     </div>
-                    <div class="FilterSetting" id="brightness">
-                        <input
-                            type="range"
-                            min="-100"
-                            max="100"
-                            step="1"
-                            value="0"
-                            data-filter="brightness"
-                            >
-                        <span class="FilterValue">0</span>
-                    </div>
                 </div>
-
-                <div class="Filter col-sm-2 col-xs-12">
+				
+                <div class="Filter col-sm-2">
                     <div class="FilterName">
                         <a title = "Contrast" class="btn btn-default" role="button" href="#" data-set="contrast"><span class = "filter-icon contrast-icon"></span><p>Contrast</p></a>
                     </div> 
-                    <div class="FilterSetting" id="contrast">
-                        <input
-                            type="range"
-                            min="-100"
-                            max="100"
-                            step="1"
-                            value="0"
-                            data-filter="contrast"
-                            >
-                        <span class="FilterValue">0</span>
-                    </div>
+                    
                 </div>
 
-                <div class="Filter col-sm-2 col-xs-12">
+                <div class="Filter col-sm-2">
                     <div class="FilterName">
                         <a title = "Saturation" class="btn btn-default" role="button" href="#" data-set="saturation"><span class = "filter-icon saturation-icon"></span><p>Saturation</p></a>
                     </div>
-                    <div class="FilterSetting" id="saturation">
-                        <input
-                            type="range"
-                            min="-100"
-                            max="100"
-                            step="1"
-                            value="0"
-                            data-filter="saturation"
-                            >
-                        <span class="FilterValue">0</span>
-                    </div>
+                    
                 </div>
-                <div class="Filter col-sm-2 col-xs-12">
+                <div class="Filter col-sm-2">
                     <div class="FilterName">
                         <a title = "Vibrance" class="btn btn-default" role="button" href="#" data-set="vibrance"><span class = "filter-icon vibrance-icon"></span><p>Vibrance</p></a>
                     </div>
-                    <div class="FilterSetting" id="vibrance">
-                        <input
-                            type="range"
-                            min="-100"
-                            max="100"
-                            step="1"
-                            value="0"
-                            data-filter="vibrance"
-                            >
-                        <span class="FilterValue">0</span>
-                    </div>
+                    
                 </div>
 
-                <div class="Filter col-sm-2 col-xs-12">
+                <div class="Filter col-sm-2">
                     <div class="FilterName">
 						<a title = "Exposure" class="btn btn-default" role="button" href="#" data-set="exposure"><span class = "filter-icon exposure-icon"></span><p>Exposure</p></a>
                     </div>
-                    <div class="FilterSetting" id="exposure">
-                        <input
-                            type="range"
-                            min="-100"
-                            max="100"
-                            step="1"
-                            value="0"
-                            data-filter="exposure"
-                            >
-                        <span class="FilterValue">0</span>
-                    </div>
+                    
                 </div>
-                <div class="Filter col-sm-2 col-xs-12">
+                <div class="Filter col-sm-2">
                     <div class="FilterName">
                         <a title = "Sharpen" class="btn btn-default" role="button" href="#" data-set="sharpen"><span class = "filter-icon sharpen-icon"></span><p>Sharpen</p></a>
                     </div>
-                    <div class="FilterSetting" id="sharpen">
-                        <input
-                            type="range"
-                            min="0"
-                            max="100"
-                            step="1"
-                            value="0"
-                            data-filter="sharpen"
-                            >
-                        <span class="FilterValue">0</span>
-                    </div>
+                    
                 </div>
             </div>
+			<div class="row input-row">
+				<div class="FilterSetting col-xs-12" id="brightness">
+					<h5 class = "text-center setting-label">Brightness</h5>
+					<input
+						type="range"
+						min="-100"
+						max="100"
+						step="1"
+						value="0"
+						data-filter="brightness"
+						>
+					<span class="FilterValue">0</span>
+				</div>
+				<div class="FilterSetting col-xs-12" id="contrast">
+					<h5 class = "text-center setting-label">Contrast</h5>
+					<input
+						type="range"
+						min="-100"
+						max="100"
+						step="1"
+						value="0"
+						data-filter="contrast"
+						>
+					<span class="FilterValue">0</span>
+                </div>
+				<div class="FilterSetting col-xs-12" id="saturation">
+					<h5 class = "text-center setting-label">Saturation</h5>
+					<input
+						type="range"
+						min="-100"
+						max="100"
+						step="1"
+						value="0"
+						data-filter="saturation"
+						>
+					<span class="FilterValue">0</span>
+                </div>
+				<div class="FilterSetting col-xs-12" id="vibrance">
+					<h5 class = "text-center setting-label">Vibrance</h5>
+					<input
+						type="range"
+						min="-100"
+						max="100"
+						step="1"
+						value="0"
+						data-filter="vibrance"
+						>
+					<span class="FilterValue ">0</span>
+                </div>
+				<div class="FilterSetting col-xs-12" id="exposure">
+					<h5 class = "text-center setting-label">Exposure</h5>
+					<input
+						type="range"
+						min="-100"
+						max="100"
+						step="1"
+						value="0"
+						data-filter="exposure"
+						>
+					<span class="FilterValue">0</span>
+                </div>
+				<div class="FilterSetting col-xs-12" id="sharpen">
+					<h5 class = "text-center setting-label">Sharpen</h5>
+					<input
+						type="range"
+						min="0"
+						max="100"
+						step="1"
+						value="0"
+						data-filter="sharpen"
+						>
+					<span class="FilterValue">0</span>
+                </div>
+			</div>
             <!-- <div class="row filter-button-row">
                 <div class="Filter col-sm-2">
                     <div class="FilterName">
