@@ -8,7 +8,6 @@ Drupal.behaviors.imageViewer = {
             var image = new Image();
             caman = null;
             dkrm = null;
-
             // presetCaman = null;
 
             filters = {};
@@ -46,15 +45,13 @@ Drupal.behaviors.imageViewer = {
 
             cropSection = function() {
                 // console.log(caman.canvas.toDataURL());
-
-                image.id = "example"
+                image.id = "example";
                     // image.src = "/images/example2_600.jpg"
                 image.src = caman.canvas.toDataURL();
                 $('#holder').html(image);
                 $("#Filters").addClass("hidden");
                 renderCrop();
             }
-
 
             renderCanvas = function() {
                 if (!($("#holder img").length > 0)) {
@@ -76,25 +73,23 @@ Drupal.behaviors.imageViewer = {
                     $(this).find('~ .FilterValue').html(value);
                     return render();
                 });
-                // return $('#PresetFilters').on('click', 'a', function() {
-                //   return renderPreset($(this).data('preset'));
-                // });
-
             }
-
-
+			
             renderCrop = function() {
                 dkrm = null;
+				if(window.innerWidth < 768) {
+                    w = 250;
+                }
+                else w = 600;
                 dkrm = new Darkroom('#example', {
                     // Size options
                     minWidth: 100,
                     minHeight: 100,
-                    maxWidth: 600,
-                    maxHeight: 500,
+                    maxWidth: w,
+                    maxHeight: w,
                     ratio: 4 / 3,
                     backgroundColor: '#000',
                     // rotate: 1,
-
                     // Plugins options
                     plugins: {
                         //save: false,
@@ -105,8 +100,6 @@ Drupal.behaviors.imageViewer = {
                             //ratio: 4/3
                         }
                     },
-
-                    // Post initialize script
                     initialize: function() {
                         var cropPlugin = this.plugins['crop'];
                         // cropPlugin.selectZone(170, 25, 300, 300);
@@ -114,11 +107,6 @@ Drupal.behaviors.imageViewer = {
                         bindEvent();
                     }
                 });
-                // window.crop = dkrm;
-                // var $save = $('xlink:href="#save"');
-                // $save.on("click",function(e){
-
-                // });
                 var bindEvent = function() {
                     $('.darkroom-toolbar .darkroom-button-group:last-child button').on('click', function(e) {
                         $("#edit").toggleClass("hidden");
@@ -126,14 +114,10 @@ Drupal.behaviors.imageViewer = {
                         setTimeout(function() {
                             saveIt($('#holder img').attr('src'));
                         }, 1000);
-                        // console.log("after");
-                        // saveIt( $('#holder img').attr('src') );
                     });
                 }
-
             }
-
-
+			
             $(document).ready(function() {
                 renderCanvas();
                 var $saveb = $("#saveIt");
@@ -142,7 +126,7 @@ Drupal.behaviors.imageViewer = {
                     //$("#edit").toggleClass("hidden");
                     $saveb.toggleClass("hidden");
                     cropSection();
-                })
+                });
                 $("#edit").on("click", function() {
                     $(this).toggleClass("hidden");
                     $("#crop").toggleClass("hidden");
@@ -155,22 +139,14 @@ Drupal.behaviors.imageViewer = {
                         // return filters[filter] = $(this).val();
                     });
                     renderCanvas();
-                })
-
-                // $("#holder").on("DOMSubtreeModified", function() {
-                //   var editButton =$("#edit");
-                //   console.log($(this).find('img').length) ;
-                //   ($(this).find('img').length)? editButton.removeClass('hidden') : editButton.addClass('hidden');
-
-
-                // });
-
+                });
                 $saveb.on("click", function(e) {
                     saveIt(caman.canvas.toDataURL());
-                })
-
+                });
                 saveIt = function(imageData) {
                     console.log(imageData);
+					if(window.innerWidth < 768)
+						$('#holder img').addClass("img-responsive");
                     $.ajax({
                         type: "POST",
                         url: Drupal.settings.basePath + "image_upload",
@@ -184,16 +160,16 @@ Drupal.behaviors.imageViewer = {
                         // need is to return the url to the file, you just saved
                         // and than put the image in your browser.
                     });
-
                 };
-
             });
 
         }).call(this);
+		
 		$("#edit, #saveIt").on("click", function(e1) {
 			e1.preventDefault();
 			$(".FilterSetting").hide();
 		});
+		
 		$(".settings-icon-xs a").on("click", function(e2) {
 			e2.preventDefault();
 			$("#holder").toggleClass("pad-img");
@@ -201,6 +177,7 @@ Drupal.behaviors.imageViewer = {
 			if($(".filter-button-row").is(":visible"))
 				$(".input-row .FilterSetting").hide();
 		});
+		
         $(".FilterName a").on("click", function(e3) {
 			e3.preventDefault();
 			$(this).parent().parent().siblings().find("a").removeClass("active");
@@ -213,18 +190,6 @@ Drupal.behaviors.imageViewer = {
 					$(this).siblings().hide();
 				}
 			});
-			
-			
-			
-			
-
-            /* if ($buttonSet == $buttonFilterSetting) {
-                //$filter.find('.FilterSetting').show();
-                //$filter.siblings('.Filter').find('.FilterSetting').hide();
-                //$filter.parent().siblings('.filter-button-row').find('.Filter .FilterSetting').hide();
-            } */
-        });
-
-
-    }
-};
+		});
+	}
+}

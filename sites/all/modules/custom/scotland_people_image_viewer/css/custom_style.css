@@ -3,6 +3,7 @@
     z-index: 15;
     top: 100px;
 }
+
 #Filters h2 {
     margin: 0;
 }
@@ -16,6 +17,7 @@
 canvas {
     margin: 0 auto;
 }
+
 .input-row {
 	width: 50%;
 	margin: auto !important;
@@ -34,7 +36,7 @@ canvas {
     text-align: center;
     font-weight: bold;
     font-size: 16px;
-	box-shadow: 0 1px 8px #777;
+	box-shadow: 0 0 10px #777;
 	padding: 5px 0;
 }
 
@@ -77,9 +79,11 @@ canvas {
     -moz-transition: all 0.3s ease-in-out;
     -webkit-transition: all 0.3s ease-in-out;
 }
+
 .setting-label {
 	display: none;
 }
+
 .FilterValue {
 	background-color: #fff;
 	color: #777;
@@ -87,6 +91,7 @@ canvas {
 	padding: 5px;
 	opacity: 0.6;
 }
+
 .brightness-icon {
     background: url("../images/img_tools.png") -52px -34px;
 }
@@ -272,6 +277,9 @@ canvas {
 		-moz-transform:rotateY(180deg);
 		-webkit-transform:rotateY(180deg);
 		transform:rotateY(180deg);
+	}
+	.darkroom-toolbar button {
+		width: 30px;
 	}
 }
 
