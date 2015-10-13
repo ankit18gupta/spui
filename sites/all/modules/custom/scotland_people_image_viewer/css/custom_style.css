@@ -154,24 +154,29 @@ canvas {
 #scotland-people-website-image-editor a {
     margin-right: 15px;
 }
+
 .active {
 	background: #535B5D;
     color: #fff;
 }
+
 .darkroom-toolbar {
 	left: 250px !important;
 }
-/*Mobile View Stylings*/
+
+/*Mobile View Stylings.*/
 
 @media screen and (max-width: 767px) {
 	#Filters {
 		position: relative !important;
 		top: 0;
 	}
+	
 	.filter-settings-row {
 		margin-right: 0 !important;
 		margin-bottom: 10px;
 	}
+	
 	.FilterSetting {
 		box-shadow: 0 2px 7px #777;
 		left: 0;
@@ -181,12 +186,15 @@ canvas {
 		z-index: 11;
 		display: none;
 	}
+	
 	.settings-icon-xs {
 		padding-right: 0 !important;
 	}
+	
 	.input-row {
 		margin: auto !important;
 	}
+	
 	.filter-button-row {
 		border: medium none;
 		left: 5px;
@@ -197,17 +205,21 @@ canvas {
 		z-index: 10;
 		display: none;
 	}
+	
 	.Filter {
 		float: left;
 		width: 15%;
 	}
+	
     .FilterName a {
         border: none;
 		padding: 4px 3px 0 1px;
     }
+	
     .FilterName p {
         display: none;
     }
+	
 	.filter-settings-row a {
 		color: #000;
 		border-radius: 0;
@@ -222,40 +234,50 @@ canvas {
 		-moz-transition: all 0.5s ease-in-out;
 		-webkit-transition: all 0.5s ease-in-out;	
 	}
+	
 	.filter-icon {
 		display: inline-block;
 		height: 29px;
 		width: 29px;
 		border-radius: 100%;
 	}
+	
 	.FilterValue {
 		display: none;
 	}
+	
 	.brightness-icon {
 		background: url("../images/filters_sm.png") no-repeat 0 0;
 	}
+	
 	.contrast-icon {
 		background: url("../images/filters_sm.png") no-repeat 0 -38px;
 		width: 30px;
 		height: 28px;
 	}
+	
 	.saturation-icon {
 		background: url("../images/filters_sm.png") no-repeat 0 -76px;
 	}
+	
 	.vibrance-icon {
 		background: url("../images/filters_sm.png") no-repeat 0 -115px;
 	}
+	
 	.exposure-icon {
 		background: url("../images/filters_sm.png") no-repeat 0 -154px;
 		
 	}
+	
 	.sharpen-icon {
 		background: url("../images/filters_sm.png") no-repeat 0 -196px;
 	}
+	
 	#holder {
 		padding: 8px 5px;
 		margin-top: 0;
 	}
+	
 	.setting-label {
 		margin: 0;
 		color: #777;
@@ -265,22 +287,31 @@ canvas {
 		display: inline-block;
 		opacity: 0.6;
 	}
+	
 	.img-btn .filter-icon {
 		height: 40px;
 		width: 40px;
 	}
+	
 	.img-btn p {
 		display: none;
 	}
+	
 	.pad-img {
 		padding: 52px 5px 8px !important;
 	}
+	
 	.rotate {
 		-ms-transform:rotateY(180deg);
 		-moz-transform:rotateY(180deg);
 		-webkit-transform:rotateY(180deg);
 		transform:rotateY(180deg);
 	}
+	
+	.darkroom-toolbar {
+		left: 0 !important;
+	}
+	
 	.darkroom-toolbar button {
 		width: 30px;
 	}
