@@ -134,9 +134,6 @@ Drupal.behaviors.imageViewer = {
                     $("#Filters").removeClass("hidden");
                     $('.FilterSetting input').each(function() {
                         $(this).val(0).trigger('change');
-                        // var filter;
-                        // filter = $(this).data('filter');
-                        // return filters[filter] = $(this).val();
                     });
                     renderCanvas();
                 });
@@ -164,7 +161,6 @@ Drupal.behaviors.imageViewer = {
             });
 
         }).call(this);
-		
 		$("#edit, #saveIt").on("click", function(e1) {
 			e1.preventDefault();
 			$(".FilterSetting").hide();
